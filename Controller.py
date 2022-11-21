@@ -3,28 +3,33 @@ from Food import *
 import pickle
 
 
-def input_int(mes) -> int:
+def input_int(mes = None) -> int:
     while True:
         try:
             print(mes)
-            return int(input("Input integer number:\t"))
+            return int(input("\nInput integer number:\t"))
         except TypeError:
             print("Incorrect input")
+            raise TypeError
         except ValueError:
+            raise ValueError
             print("Incorrect input")
 
 
-def input_float() -> float:
+def input_float(mes = None) -> float:
     while True:
+        print(mes)
         try:
             return float(input("Input fractional number:\t"))
         except TypeError:
             print("Incorrect input")
+            raise TypeError
         except ValueError:
             print("Incorrect input")
+            raise ValueError
 
 
-def input_Eq(mes) -> Equipment:
+def input_Eq(mes = None) -> Equipment:
     name = input("Input name of equipment:\t")
     price = input_int("Input price:\t")
     type = input("Input type:\t")
@@ -33,7 +38,7 @@ def input_Eq(mes) -> Equipment:
     width = 0
     depth = 0
     while flag:
-        tmp = input("Input:\t weight/width/depth").split("/")
+        tmp = input("Input:\tweight/width/depth:\n").split("/")
         try:
             weight = int(tmp[0])
             width = int(tmp[1])
@@ -44,7 +49,7 @@ def input_Eq(mes) -> Equipment:
     return Equipment(name, price, type, weight, width, depth)
 
 
-def input_Food(mes) -> Food:
+def input_Food(mes = None) -> Food:
     name = input("Input name of product:\t")
     price = input_int("Input price:\t")
     tmp = input("Input data of creating (xx.xx.xxxx:\t").split('.')
@@ -55,7 +60,7 @@ def input_Food(mes) -> Food:
     depth = 0
     flag = True
     while flag:
-        tmp = input("Input:\t weight/width/depth").split("/")
+        tmp = input("Input:\t weight/width/depth\n").split("/")
         try:
             weight = int(tmp[0])
             width = int(tmp[1])
@@ -92,5 +97,6 @@ def load(path) -> list:
     except EOFError:
         return base
     except IOError:
-        print("There are no save files in such directory.")
+        print("\nThere are no save files in such directory\n.")
+        raise IOError
 
