@@ -1,7 +1,12 @@
 class Product:
+    MIN_PRICE = 0.01
+
     def __init__(self, name, price, weight, width=1, depth=1):
         self.__name = name
-        self.__price = price
+        if price < 0.01:
+            self.price = self.MIN_PRICE
+        else:
+            self.__price = price
         self.__weight = weight
         self.__width = width
         self.__depth = depth
@@ -10,8 +15,8 @@ class Product:
     def discount(self, percent) -> float:
         ans = round((self.price * (100 - percent) / 100), 2)
         if ans == 0:
-            self.__price = 0.01
-            return 0.01
+            self.__price = self.MIN_PRICE
+            return self.MIN_PRICE
         else:
             self.__price = ans
             return ans

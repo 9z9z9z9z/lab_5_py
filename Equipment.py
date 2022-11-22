@@ -22,10 +22,11 @@ class Equipment(Product):
         self.__brand = value
 
     def to_string(self):
-        return "Equipment\n" + self.name + "\n" + self.__brand + '\n' + str(self.price) + "\n" + self.__type \
+        return "Equipment\n" + str(self.name) + "\n" + str(self.__brand) + '\n' + str(self.price) + "\n" + str(self.__type) \
                + "\n" + str(self.volume)
 
     def __str__(self):
-        return "\n====================================\nName:\t" + self.name + "\nPrice:\t" + str(self.price) + \
-               "\nBrand:\t" + self.__brand +"\nType:\t" + self.__type + "\nDimensions:\t" + str(self.volume) + \
+        ret = "\n====================================\nName:\t" + str(self.name) + "\nPrice:\t" + str(self.price) + \
+               "\nBrand:\t" + str(self.__brand) +"\nType:\t" + str(self.__type) + "\nDimensions:\t" + str(self.volume) + \
                "\n====================================\n"
+        return ret

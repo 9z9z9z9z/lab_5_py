@@ -4,18 +4,17 @@ from Controller import *
 
 class Tests(unittest.TestCase):
 
-    def test_input_int(self):
+    def test_input_int_type(self):
         with self.assertRaises(ValueError):
-            input_int()
-        
+            input_int("Need a ValueError")
 
-    # def test_input_eq(self):
-    #     base = input_Eq()
-    #     self.assertEqual(base, Equipment("", 0, "", "", 0, 1, 1))
+    def test_input_int_custom(self):
+        with self.assertRaises(MyException):
+            input_int("Need a MyException")
     
     def test_loading(self):
         with self.assertRaises(IOError):
-            load("safe.dat")
+            load(input("Input name of file:\t"))
 
 
 if __name__ == '__main__':

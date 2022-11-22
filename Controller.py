@@ -1,22 +1,26 @@
 from Equipment import *
 from Food import *
+from CustomException import *
 import pickle
 
 
-def input_int(mes = None) -> int:
+def input_int(mes=None) -> int:
     while True:
+
         try:
             print(mes)
-            return int(input("\nInput integer number:\t"))
-        except TypeError:
-            print("Incorrect input")
-            raise TypeError
+            ans = int(input("\nInput integer number:\t"))
+            if ans < 0.01:
+                raise MyException
+            else:
+                return ans
+
         except ValueError:
-            raise ValueError
             print("Incorrect input")
+            raise ValueError
 
 
-def input_float(mes = None) -> float:
+def input_float(mes=None) -> float:
     while True:
         print(mes)
         try:
@@ -24,12 +28,10 @@ def input_float(mes = None) -> float:
         except TypeError:
             print("Incorrect input")
             raise TypeError
-        except ValueError:
-            print("Incorrect input")
-            raise ValueError
 
 
-def input_Eq(mes = None) -> Equipment:
+def input_Eq(mes=None) -> Equipment:
+    print(mes, '\n')
     name = input("Input name of equipment:\t")
     price = input_int("Input price:\t")
     type = input("Input type:\t")
@@ -49,7 +51,8 @@ def input_Eq(mes = None) -> Equipment:
     return Equipment(name, price, type, weight, width, depth)
 
 
-def input_Food(mes = None) -> Food:
+def input_Food(mes=None) -> Food:
+    print(mes)
     name = input("Input name of product:\t")
     price = input_int("Input price:\t")
     tmp = input("Input data of creating (xx.xx.xxxx:\t").split('.')
@@ -99,4 +102,3 @@ def load(path) -> list:
     except IOError:
         print("\nThere are no save files in such directory\n.")
         raise IOError
-

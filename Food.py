@@ -1,5 +1,4 @@
 import string
-
 from Product import Product
 
 
